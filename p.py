@@ -62,8 +62,6 @@ while True:
     elif op == 3:
         print("Saindo...")
         break
-    else:
-        print("Comando Inválido, tente novamente.")
 
 # cliente
 # admin
