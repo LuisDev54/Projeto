@@ -1,11 +1,11 @@
  # login
 Usuario_ADM = [
-["Wallisson", "Wallisson123@gmail.com", "#Agronegócio"], ["Guilherme", "GuiGui@gmail.com", "@Algoritmos"] 
-["Renê", "Gadelha@gmail.com", "Coordenadoria26"], ["Gilvan", "ReiGil@gmail.com", "GilvanII!"]
+["wallisson", "wallisson123@gmail.com", "#agronegócio"], ["guilherme", "guigui@gmail.com", "@algoritmos"], 
+["renê", "gadelha@gmail.com", "coordenadoria26"], ["gilvan", "reigil@gmail.com", "gilvanII"]
 ]
 
 Usuario_CLI = [
-["Gabriel", "gabrielbastos@gmail.com", "zecabode"] ["Zacarias", "zacarias01@gmail.com", "fazendajatobar###"]
+["gabriel", "gabrielbastos@gmail.com", "zecabode"], ["zacarias", "zacarias01@gmail.com", "fazendajatobar###"]
 ]
 
 Usuarios = [Usuario_ADM, Usuario_CLI]
@@ -20,50 +20,50 @@ login_do_usuario = 0
 perfil_do_login = 0
 
 while True:
-    print("-----Bem vindo Agro app -----")
-    print("1 - login do usuario".lower )
-    print("2 - login adm".lower)
-    print("3 - cadastro do usuario".lower)
-    print("4 - alterar produto".upper )
-    print("5 - Sair")
-    OP = int(input(""))
-
-    if Usuario_CLI == "cli":
-        print("---adm_logado---")
-        print("1- cadastrar produto")
-        #vamos colocar uma .apped para essa função
-        print("2 - remover produto !")
-        # vamos usar um .pop para essa função
-        print("3 - adicionar animal")
-        print("4 - remover animal")
-        print("5 -  ")
-        print("- sair")
-    
-
-    elif OP == 2:
+    print("----- Bem vindo ao Agro app -----")
+    print("1 - login do usuario" )
+    print("2 - cadastro de usuario")
+    print("3 - Sair")
+    op = int(input(""))
+    if op == 1:
+        nome = input("Nome: ")
         gmail = input("Email: ")
         senha = input("Senha: ")
+    elif op == 2:
         nome = input("Nome: ")
-        perfil = input("Perfil (adm/cliente): ").lower
-        Usuario_CLI.append([Usuario_CLI, gmail, senha])
-        print("Usuário cadastrado com sucesso.")
-    elif OP == 4:
-        pid = int(input("ID para remover: "))
-        for p in produtos:
-            if p[0] == pid:
-                produtos.pop(p)
-                print("Removido com sucesso.")
+        gmail = input("Email: ")
+        senha = input("Senha: ")
+        while True:
+            
+            if "@" in gmail and ".com" in gmail:
+                print("Email válido")
+            else:
+                print("Email inválido! Deve conter @ e terminar com .com")
+            if len(senha) >= 8:
                 break
+            else:
+                print("Senha inválida! Mínimo 8 caracteres.")
+            
+            perfil = input("Perfil (adm/cliente): ")
+
+            if perfil == "adm":
+                Usuario_ADM.append([nome, gmail, senha])
+                print("Usuário cadastrado com sucesso.")
+                break  
+
+            elif perfil == "cliente":
+                Usuario_CLI.append([nome, gmail, senha])
+                print("Usuário cadastrado com sucesso.")
+                break 
+
+            else:
+                print("Inválido! Tente novamente.")
+
+    elif op == 3:
+        print("Saindo...")
+        break
+    else:
+        print("Comando Inválido, tente novamente.")
 
 # cliente
 # admin
-    if Usuario_ADM == "adm":
-        print("---adm_logado---")
-        print("1- cadastrar produto")
-        #vamos colocar uma .apped para essa função
-        print("2 - remover produto !")
-        # vamos usar um .pop para essa função
-        print("3 - adicionar animal")
-        print("4 - remover animal")
-        print("5 -  ")
-        print("- sair")
