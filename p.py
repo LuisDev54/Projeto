@@ -26,33 +26,94 @@ while True:
     print("3 - Sair")
     op = int(input(""))
     if op == 1:
-        nome = input("Nome: ")
-        gmail = input("Email: ")
-        senha = input("Senha: ")
-    elif op == 2:
-        nome = input("Nome: ")
-        gmail = input("Email: ")
-        senha = input("Senha: ")
         while True:
-            
-            if "@" in gmail and ".com" in gmail:
-                print("Email válido")
+            nome = input("Nome: ")
+
+            tem_numero = False
+            i = 0
+
+            while i < len(nome):
+
+                if nome[i] >= "0" and nome[i] <= "9":
+                    tem_numero = True
+
+                i += 1
+
+            if tem_numero:
+                print("Inválido! O nome só pode ter letras.")
+
             else:
-                print("Email inválido! Deve conter @ e terminar com .com")
+                break
+        while True:
+            email = input("Email: ")
+            if email == "":
+                print("Email inválido!")
+            elif "@" not in email:
+                print("Email inválido!")
+            elif "gmail.com" not in email:
+                print("Email inválido!")
+            elif email[0] == "@":
+                print("Email inválido!")
+            else:
+                print("Email válido!")
+                break
+        
+        while True:
+            senha = input("Senha: ")
             if len(senha) >= 8:
                 break
             else:
                 print("Senha inválida! Mínimo 8 caracteres.")
-            
+    
+    elif op == 2:
+        while True:
+            nome = input("Nome: ")
+
+            tem_numero = False
+            i = 0
+
+            while i < len(nome):
+
+                if nome[i] >= "0" and nome[i] <= "9":
+                    tem_numero = True
+
+                i += 1
+
+            if tem_numero:
+                print("Inválido! O nome só pode ter letras.")
+
+            else:
+                break
+        while True:
+            email = input("Email: ")
+            if email == "":
+                print("Email inválido!")
+            elif "@" not in email:
+                print("Email inválido!")
+            elif "gmail.com" not in email:
+                print("Email inválido!")
+            elif email[0] == "@":
+                print("Email inválido!")
+            else:
+                print("Email válido!")
+                break
+        
+        while True:
+            senha = input("Senha: ")
+            if len(senha) >= 8:
+                break
+            else:
+                print("Senha inválida! Mínimo 8 caracteres.")
+        while True:
             perfil = input("Perfil (adm/cliente): ")
 
             if perfil == "adm":
-                Usuario_ADM.append([nome, gmail, senha])
+                Usuario_ADM.append([nome, email, senha])
                 print("Usuário cadastrado com sucesso.")
                 break  
 
             elif perfil == "cliente":
-                Usuario_CLI.append([nome, gmail, senha])
+                Usuario_CLI.append([nome, email, senha])
                 print("Usuário cadastrado com sucesso.")
                 break 
 
@@ -62,6 +123,8 @@ while True:
     elif op == 3:
         print("Saindo...")
         break
+    else:
+        print("Comando Inválido, tente novamente.")
 
 # cliente
 # admin
