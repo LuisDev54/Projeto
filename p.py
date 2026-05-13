@@ -27,53 +27,50 @@ while True:
     op = int(input(""))
     if op == 1:
         while True:
-            nome = input("Nome: ").strip()
-
-            tem_numero = False
-            i = 0
-
-            while i < len(nome):
-
-                if nome[i] >= "0" and nome[i] <= "9":
-                    tem_numero = True
-
-                i += 1
-
-            if tem_numero:
-                print("Inválido! O nome só pode ter letras.")
-
-            else:
-                break
-        while True:
             email = input("Email: ").strip()
             if "@" not in email:
                 print("Email inválido!")
             elif "gmail.com" not in email and "hotmail.com" not in email:
-                print("Email inválido! # 1")
+                print("Email inválido!")
             elif email[0] == "@":
                 print("Email inválido!")
             elif email[-9:] != "gmail.com" and email[-11:] != "hotmail.com":
-                print("Email inválido! # 2")
+                print("Email inválido!")
             else:
                 break
         
         while True:
-            senha = input("Senha: ")
+            senha = input("Senha: ").strip()
             if len(senha) >= 8:
                 break
             else:
                 print("Senha inválida! Mínimo 8 caracteres.")
-        while True: 
-            for e in usuarios:
-                if [nome, email, senha] in usuarioADM:
-                    print("test")
-                    break
-                elif [nome, email, senha] in usuarioCLI:
-                    print("test")
-                    break
-                elif [nome, email, senha] not in usuarioCLI or usuarioADM:
-                    print("usuário não encontrado.")
-                    break #Break n ta funcionando 
+
+        encontrado = False
+
+        for usuario in usuarioADM:
+            if usuario[1] == email and usuario[2] == senha:
+                print(f"Bem-vindo ADM {usuario[0]}!")
+                encontrado = True
+                while True: 
+                
+                    animais.append([])
+            elif op == 4 :
+                print ("-" *  50)
+                nomedeanimal = input("Digite o nome do seu animal ! ")
+                for a in animais:
+                        if a[0] == animais:
+                            print("a[0], " | "a[1], " |" a[2], ")
+
+        if not encontrado:
+            for usuario in usuarioCLI:
+                if usuario[1] == email and usuario[2] == senha:
+                    print(f"Bem-vindo Cliente {usuario[0]}!")
+                    encontrado = True
+                   
+
+            else:
+                print("Login ou senha incorretos.")
 
     elif op == 2:
         while True:
@@ -99,11 +96,11 @@ while True:
             if "@" not in email:
                 print("Email inválido!")
             elif "gmail.com" not in email and "hotmail.com" not in email:
-                print("Email inválido! # 1")
+                print("Email inválido!")
             elif email[0] == "@":
                 print("Email inválido!")
             elif email[-9:] != "gmail.com" and email[-11:] != "hotmail.com":
-                print("Email inválido! # 2")
+                print("Email inválido!")
             else:
                 break
         
@@ -117,12 +114,12 @@ while True:
             perfil = input("Perfil (adm/cliente): ").strip().lower()
 
             if perfil == "adm":
-                usuarioADM.append([nome, email, senha]).lower()
+                usuarioADM.append([nome, email, senha])
                 print("Usuário cadastrado com sucesso.")
                 break  
 
             elif perfil == "cliente":
-                usuarioCLI.append([nome, email, senha]).lower()
+                usuarioCLI.append([nome, email, senha])
                 print("Usuário cadastrado com sucesso.")
                 break 
 
@@ -138,3 +135,22 @@ while True:
 
 # cliente
 # admin
+
+alteraranimais = input("Digite o nome do animal ! ")
+novoanimal = input("Digite o nome do Novo animal ! ")
+for posicao in range(len(animais)):
+    if animais[posicao] == alteraranimais:
+        animais[posicao] == novoanimal
+        print(animais)
+
+produtos = []
+
+adicionarprodutos = input("Digite o nome do produto ! ")
+alterarprodutos = input("Digite o nome do produto que vc deseja alterar ! ")
+for posicao in range(len(animais)):
+    if produtos[posicao] == adicionarprodutos:
+        produtos[posicao] == alterarprodutos
+        print(produtos)
+
+produtos(len(produtos)):
+        print(produtos)
