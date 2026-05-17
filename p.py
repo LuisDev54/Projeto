@@ -48,29 +48,41 @@ while True:
 
         encontrado = False
 
+        
         for usuario in usuarioADM:
-            if usuario[1] == email and usuario[2] == senha:
+            if usuarioADM[1] == email and usuarioADM[2] == senha:
                 print(f"Bem-vindo ADM {usuario[0]}!")
                 encontrado = True
                 while True: 
-                
-                    animais.append([])
-            elif op == 4 :
-                print ("-" *  50)
-                nomedeanimal = input("Digite o nome do seu animal ! ")
-                for a in animais:
-                        if a[0] == animais:
-                            print("a[0], " | "a[1], " |" a[2], ")
+                    print("------ Bem vindo ao Terminal ------")
+                    print("1 - Gerenciar Rebanho" )
+                    print("2 - Gerenciar Produção e Derivados")
+                    print("0 - Sair")
+                    op = int(input(""))
+                    if op == 0:
+                        break
+                    
 
-        if not encontrado:
-            for usuario in usuarioCLI:
-                if usuario[1] == email and usuario[2] == senha:
-                    print(f"Bem-vindo Cliente {usuario[0]}!")
-                    encontrado = True
-                   
+        for usuario in usuarioCLI:
+            if usuarioCLI[1] == email and usuarioCLI[2] == senha:
+                print(f"Bem-vindo Cliente {usuario[0]}!")
+                encontrado = True
+                while True:
+                    print("------ Bem vindo ao Terminal ------")
+                    print("1 -  Efetuar compra" )
+                    print("2 - Agendar Retirada/Transporte")
+                    print("0 - Sair")
+                    op = int(input(""))
+                    if op == 0:
+                        break
+        
+        for usuario in usuarioADM:
+                    if usuario[1] != email and usuario[2] != senha:
+                        print("Login ou senha incorretos.")
 
-            else:
-                print("Login ou senha incorretos.")
+        for usuario in usuarioCLI:
+                    if usuario[1] != email and usuario[2] != senha:
+                        print("Login ou senha incorretos.")
 
     elif op == 2:
         while True:
@@ -152,5 +164,13 @@ for posicao in range(len(animais)):
         produtos[posicao] == alterarprodutos
         print(produtos)
 
-produtos(len(produtos)):
-        print(produtos)
+produtos(len(produtos))
+print(produtos)
+
+# elif op == 4 :
+#     print ("-" *  50)
+#     nomedeanimal = input("Digite o nome do seu animal ! ")
+#     for a in animais:
+#         if a[0] == animais:
+#             print("a[0], " | "a[1], " |" a[2], ")
+animais.append([])
