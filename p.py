@@ -87,22 +87,21 @@ while True:
     elif op == 2:
         while True:
             nome = input("Nome: ").strip()
-
+            
             tem_numero = False
             i = 0
 
             while i < len(nome):
-
                 if nome[i] >= "0" and nome[i] <= "9":
                     tem_numero = True
 
-                i += 1
-
-            if tem_numero:
-                print("Inválido! O nome só pode ter letras.")
-
-            else:
-                break
+                    i += 1
+            
+        if tem_numero:
+            print("Inválido! O nome só pode ter letras.")
+        else:
+            print("tente novamente")
+        
         while True:
             email = input("Email: ").strip()
             if "@" not in email:
