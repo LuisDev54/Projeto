@@ -9,15 +9,23 @@ usuarioCLI = [
 
 usuarios = [usuarioADM, usuarioCLI]
 usuario_gilvan_animais = [" Bovinos", "Ovinos", "Caprinos", "Aves", "Suinos"]
-animais = [["bovino", "azul", "AB12", "disponível para venda"]]
+animais = [
+    ["bovino", "azul", "AB12", "disponível para venda"]
+]
 
-produtos = []
-# qualquer coisa a gente add mais listas
-id_produto = 1
-
-#contador de produtos !
-login_do_usuario = 0
-perfil_do_login = 0
+Produtos = [
+    ["Leite", 100, 4.00]
+    ["Milho", 500, 1.80],
+    ["Feijão", 200, 6.50],
+    ["Arroz", 350, 4.20],
+    ["Soja", 800, 2.90],
+    ["Café", 150, 15.00],
+    ["Cana-de-açúcar", 1200, 0.75],
+    ["Algodão", 300, 5.40],
+    ["Mandioca", 450, 2.10],
+    ["Tomate", 180, 3.80],
+    ["Batata", 250, 2.70]
+]
 
 while True:
     print("------ Bem vindo ao Agro app ------")
@@ -249,13 +257,59 @@ while True:
                                     print("Animal não encontrado.")
                             
                             elif op == 0:
-                                break
-                                    
-                            
+                                break   
                             else:
                                 print("Comando Inválido, tente novamente.")
+                    
                     elif op == 2:
-                        print("test")
+                        while True:
+                            print("\n=== GERENCIAR PRODUÇÃO E DERIVADOS ===")
+                            print("1 - Registrar leite ordenhado")
+                            print("2 - Cadastrar produto")
+                            print("3 - Atualizar produto")
+                            print("4 - Remover produto")
+                            print("0 - Sair")
+                            op = int(input("Escolha uma opção: "))
+                            if op == 1:
+
+                                litros = float(input("Digite a quantidade de litros ordenhados: "))
+
+                                Produtos.append(["Leite", litros, 4])
+
+                                print("Produção registrada com sucesso!")
+
+        
+                            elif op == 2:
+                                nome_produto = input("Nome do produto: ").strip()
+
+                                peso = float(input("Peso do produto (kg): "))
+
+                                valor = float(input("Valor de venda: R$ "))
+
+                                produto = [nome_produto, peso, valor]
+
+                                Produtos.append(produto)
+
+                                print("Produto adicionado ao estoque!")
+
+        
+                            elif op == 3:
+                                print("\n=== PRODUÇÃO DE LEITE ===")
+                                for leite in Produtos:
+                                    print(leite, "litros")
+                                    print("\n=== PRODUTOS FABRICADOS ===")
+
+                                for produto in derivados:
+
+                                    print("Produto:", produto[0])
+                                    print("Peso:", produto[1], "kg")
+                                    print("Valor: R$", produto[2])
+
+                            elif op == 4:
+                                break
+
+                             else:
+                                print("Opção inválida!")
                     elif op == 0:
                         break
                     else:
