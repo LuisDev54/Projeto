@@ -294,18 +294,14 @@ while True:
             i = 0
 
             while i < len(nome):
-
                 if nome[i] >= "0" and nome[i] <= "9":
                     tem_numero = True
-
                 elif nome[i] != " " and not ("A" <= nome[i] <= "Z") and not ("a" <= nome[i] <= "z"):
                     invalido = True
-
                 i += 1
 
             if tem_numero == True or invalido == True:
                 print("Inválido! O nome só pode ter letras.")
-
             else:
                 break
         
