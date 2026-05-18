@@ -66,8 +66,7 @@ while True:
                             print("2 - Buscar Animal")
                             print("3 - Atualizar animal")
                             print("4 - remover animal")
-                            print("5 - Registros")
-                            print("6 - sair")
+                            print("0 - sair")
                             print("-" * 10)
                             op = int(input(""))
                             if op == 1:
@@ -150,16 +149,114 @@ while True:
                                 animal = [tipo, brinco, identificacao, status]
                                 animais.append(animal)
                                 print("Animal cadastrado com sucesso!")
+                            
+                            if op == 2:
+                                tipo = input("Digite o tipo do animal: ").lower()
+                                brinco = input("Digite a cor do brinco: ").lower()
+                                identificacao = input("Digite a identificação: ")
 
-                            elif op == 6:
+                                encontrado = False
+
+                                for animal in animais:
+
+                                    if animal[0] == tipo:
+                                        if animal[1] == brinco:
+                                            if animal[2] == identificacao:
+
+                                                print("\nAnimal encontrado!")
+                                                print("Tipo:", animal[0])
+                                                print("Cor do brinco:", animal[1])
+                                                print("Identificação:", animal[2])
+                                                print("Status:", animal[3])
+
+                                                encontrado = True
+
+                                if encontrado == False:
+                                    print("Animal não encontrado.")
+
+                            elif op == 3:
+                                while True:
+                                    tipo = input("Digite o tipo do animal: ").lower()
+                                    brinco = input("Digite a cor do brinco: ").lower()
+                                    identificacao = input("Digite a identificação: ")
+
+                                    encontrado = False
+
+                                    for animal in animais:
+                                        if animal[0] == tipo:
+                                            if animal[1] == brinco:
+                                                if animal[2] == identificacao:
+
+                                                    encontrado = True
+                            
+                                    if encontrado == False:
+                                        print("Animal não encontrado.")
+                                    else:
+                                        print("\nAnimal encontrado!")
+                                        break
+                                while True:
+
+                                    print("\nStatus disponíveis:")
+                                    print("1 - Em lactação")
+                                    print("2 - Para engorda")
+                                    print("3 - Disponível para venda")
+
+                                    status = int(input("Digite o novo status: "))
+
+                                    if status == 1:
+                                        animal[3] = "em lactação"
+                                        break
+
+                                    elif status == 2:
+                                        animal[3] = "para engorda"
+                                        break
+
+                                    elif status == 3:
+                                        animal[3] = "disponível para venda"
+                                        break
+
+                                    else:
+                                        print("Erro! Status inválido.")
+
+                                print("Animal atualizado com sucesso!")
+                                break
+                            
+                            elif op == 4:
+
+                                tipo = input("Digite o tipo do animal: ").lower()
+                                brinco = input("Digite a cor do brinco: ").lower()
+                                identificacao = input("Digite a identificação: ")
+
+                                encontrado = False
+
+                                for i in range(len(animais)):
+
+                                    if animais[i][0] == tipo:
+
+                                        if animais[i][1] == brinco:
+
+                                            if animais[i][2] == identificacao:
+
+                                                animais.pop(i)
+
+                                                print("Animal removido com sucesso!")
+
+                                                encontrado = True
+
+                                                break
+
+                                if encontrado == False:
+                                    print("Animal não encontrado.")
+                            
+                            elif op == 0:
                                 break
                                     
                             
                             else:
                                 print("Comando Inválido, tente novamente.")
-                    if op == 2:
+                    elif op == 2:
                         print("test")
-                    if op == 0:
+                    elif op == 0:
                         break
                     else:
                         print("Comando Inválido, tente novamente.")
@@ -187,22 +284,30 @@ while True:
             print("Login ou senha incorretos.")
 
     elif op == 2:
+
         while True:
+
             nome = input("Nome: ").strip()
-            
+
             tem_numero = False
+            invalido = False
             i = 0
 
             while i < len(nome):
+
                 if nome[i] >= "0" and nome[i] <= "9":
                     tem_numero = True
 
-                    i += 1
-            
-        if tem_numero:
-            print("Inválido! O nome só pode ter letras.")
-        else:
-            print("tente novamente")
+                elif nome[i] != " " and not ("A" <= nome[i] <= "Z") and not ("a" <= nome[i] <= "z"):
+                    invalido = True
+
+                i += 1
+
+            if tem_numero == True or invalido == True:
+                print("Inválido! O nome só pode ter letras.")
+
+            else:
+                break
         
         while True:
             email = input("Email: ").strip()
@@ -248,17 +353,6 @@ while True:
 
 # cliente
 # admin
-
-# 2
-alteraranimais = input("Digite o nome do animal ! ")
-novoanimal = input("Digite o nome do Novo animal ! ")
-for posicao in range(len(animais)):
-    if animais[posicao] == alteraranimais:
-        animais[posicao] == novoanimal
-        print(animais)
-
-produtos = []
-
  # 1
 adicionarprodutos = input("Digite o nome do produto ! ")
 alterarprodutos = input("Digite o nome do produto que vc deseja alterar ! ")
