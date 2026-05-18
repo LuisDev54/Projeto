@@ -1,4 +1,3 @@
- # login
 usuarioADM = [
 ["wallisson", "wallisson123@gmail.com", "#agronegócio"], ["guilherme", "guigui@gmail.com", "@algoritmos"], 
 ["renê", "gadelha@gmail.com", "coordenadoria26"], ["gilvan", "reigil@gmail.com", "gilvanII"]
@@ -9,8 +8,9 @@ usuarioCLI = [
 ]
 
 usuarios = [usuarioADM, usuarioCLI]
+usuario_gilvan_animais = [" Bovinos", "Ovinos", "Caprinos", "Aves", "Suinos"]
+animais = [["bovino", "azul", "AB12", "disponível para venda"]]
 
-animais = ["Bovinos", "Ovinos", "Caprinos", "Aves", "Equinos", "Suinos"]
 produtos = []
 # qualquer coisa a gente add mais listas
 id_produto = 1
@@ -50,7 +50,7 @@ while True:
 
         
         for usuario in usuarioADM:
-            if usuarioADM[1] == email and usuarioADM[2] == senha:
+            if usuario[1] == email and usuario[2] == senha:
                 print(f"Bem-vindo ADM {usuario[0]}!")
                 encontrado = True
                 while True: 
@@ -59,12 +59,113 @@ while True:
                     print("2 - Gerenciar Produção e Derivados")
                     print("0 - Sair")
                     op = int(input(""))
+                    if op == 1:
+                        while True:
+                            print("-" * 10)
+                            print("1 - Cadastrar animal" )
+                            print("2 - Buscar Animal")
+                            print("3 - Atualizar animal")
+                            print("4 - remover animal")
+                            print("5 - Registros")
+                            print("6 - sair")
+                            print("-" * 10)
+                            op = int(input(""))
+                            if op == 1:
+                               
+                                while True:
+
+                                    print("Tipos disponíveis:")
+                                    print("Bovino, Suino, Ave, Ovino, Caprino")
+                                    print("-" * 10)
+                                    tipo = input("Digite o tipo: ").lower()
+
+                                    if tipo != "bovino" and tipo != "suino" and tipo != "ave" and tipo != "ovino" and tipo != "caprino":
+                                        print("Tipo inválido! Tente novamente.")
+                                    else:
+                                        break
+                                
+                                
+                                while True:
+                                    print("Escolha uma cor de brinco para o animal abaixo.")
+                                    print("As cores disponíveis são azul, amarelo e verde.")
+                                    print("-" * 10)
+                                    brinco = input("")
+                                    if brinco == "azul" or brinco == "amarelo" or brinco == "verde":
+                                        print("-" * 10)
+                                        break
+                                    else:
+                                        print("Digite uma cor válida!")
+                                
+                                while True:
+                                    identificacao = input("Digite a identificação: ")
+                                    valido = True
+                                    
+                                    for letra in identificacao:
+                                        if "A" <= letra <= "Z":
+                                            valido = True
+                                        elif "a" <= letra <= "z":
+                                            valido = True
+                                        elif "0" <= letra <= "9":
+                                            valido = True
+                                        else:
+                                            valido = False
+                                    
+                                    for animal in animais:
+                                        if animal[0] == tipo:
+                                            if animal[1] == brinco:
+                                                if animal[2] == identificacao:
+                                                    print("Erro! Já existe um animal com esse brinco.")
+                                                    valido = False
+                                    
+                                    if len(identificacao) != 4:
+                                        print("Erro! A identificação deve ter 4 caracteres.")
+                                        valido = False
+                                    
+
+                                    if valido == True:
+                                            break
+                                
+
+                                while True:
+                                    
+                                    print("\nStatus disponíveis:")
+                                    print("1 - Em lactação")
+                                    print("2 - Para engorda")
+                                    print("3 - Disponível para venda")
+
+                                    status = int(input("Digite o status: "))
+
+                                    if status == 1:
+                                        status = "em lactação"
+                                        break
+                                    elif status == 2:
+                                        status = "para engorda"
+                                        break
+                                    elif status == 3:
+                                        status = "disponível para venda"
+                                        break
+                                    else:
+                                        print("Erro! Status inválido.")
+                                
+                                animal = [tipo, brinco, identificacao, status]
+                                animais.append(animal)
+                                print("Animal cadastrado com sucesso!")
+
+                            elif op == 6:
+                                break
+                                    
+                            
+                            else:
+                                print("Comando Inválido, tente novamente.")
+                    if op == 2:
+                        print("test")
                     if op == 0:
                         break
-                    
+                    else:
+                        print("Comando Inválido, tente novamente.")
 
         for usuario in usuarioCLI:
-            if usuarioCLI[1] == email and usuarioCLI[2] == senha:
+            if usuario[1] == email and usuario[2] == senha:
                 print(f"Bem-vindo Cliente {usuario[0]}!")
                 encontrado = True
                 while True:
@@ -73,16 +174,17 @@ while True:
                     print("2 - Agendar Retirada/Transporte")
                     print("0 - Sair")
                     op = int(input(""))
+                    if op == 1:
+                        print("")
+                    if op == 2:
+                        print("test")
                     if op == 0:
                         break
+                    else:
+                        print("Comando Inválido, tente novamente.")
         
-        for usuario in usuarioADM:
-                    if usuario[1] != email and usuario[2] != senha:
-                        print("Login ou senha incorretos.")
-
-        for usuario in usuarioCLI:
-                    if usuario[1] != email and usuario[2] != senha:
-                        print("Login ou senha incorretos.")
+        if encontrado == False:
+            print("Login ou senha incorretos.")
 
     elif op == 2:
         while True:
@@ -147,6 +249,7 @@ while True:
 # cliente
 # admin
 
+# 2
 alteraranimais = input("Digite o nome do animal ! ")
 novoanimal = input("Digite o nome do Novo animal ! ")
 for posicao in range(len(animais)):
@@ -156,6 +259,7 @@ for posicao in range(len(animais)):
 
 produtos = []
 
+ # 1
 adicionarprodutos = input("Digite o nome do produto ! ")
 alterarprodutos = input("Digite o nome do produto que vc deseja alterar ! ")
 for posicao in range(len(animais)):
