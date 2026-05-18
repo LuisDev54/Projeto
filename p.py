@@ -496,17 +496,17 @@ while True:
 
                         print("Horário inválido! Tente novamente.")
 
-            transporte = [nome, dia, mes, ano, horario]
+                        transportes = [nome, dia, mes, ano, horario]
 
-            Agendado.append(transporte)
+                        Agendado.append(transportes)
 
-            print("\nRetirada agendada com sucesso!")
+                        print("\nRetirada agendada com sucesso!")
+                    
+                    elif op == 0:
+                        break
 
-                    if op == 0:
-                    break
-
-            else:
-                print("Comando inválido, tente novamente.")
+                    else:
+                        print("Comando inválido, tente novamente.")
         
         if encontrado == False:
             print("Login ou senha incorretos.")
@@ -574,6 +574,3 @@ while True:
         break
     else:
         print("Comando Inválido, tente novamente !")
-
-# cliente
-# admin
