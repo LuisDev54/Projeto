@@ -27,6 +27,13 @@ Produtos = [
     ["Batata", 350, 2.70]
 ]
 
+Agendado = []
+
+meses30 = [4, 6, 9, 11]
+meses31 = [1, 3, 5, 7, 8, 10, 12]
+
+
+
 while True:
     print("------ Bem vindo ao Agro app ------")
     print("1 - login do usuario" )
@@ -325,19 +332,181 @@ while True:
                 print(f"Bem-vindo Cliente {usuario[0]}!")
                 encontrado = True
                 while True:
-                    print("* - 10 Bem vindo ao Terminal * - 10 ")
-                    print("1 -  Efetuar compra" )
+                    print("\n------ Bem vindo ao Terminal ------")
+                    print("1 - Efetuar compra")
                     print("2 - Agendar Retirada/Transporte")
                     print("0 - Sair")
-                    op = int(input(""))
+
+                    op = int(input("Escolha uma opção: "))
                     if op == 1:
-                        print("")
-                    if op == 2:
-                        print("test")
+                        while True:
+                            print("\n=== COMPRAS ===")
+                            print("1 - Comprar animal")
+                            print("2 - Comprar produto")
+                            print("0 - Voltar")
+
+                            compra = int(input("Escolha: "))
+
+                            if compra == 1:
+
+                                encontrado = False
+
+                                tipo = input("Digite o tipo de animal desejado: ").lower()
+
+                                print("\n=== ANIMAIS DISPONÍVEIS ===")
+
+                                for animal in animais:
+                                        if animal[0] == tipo:
+                                            if animal[3] == "disponível para venda":
+                                                print("Tipo:", animal[0])
+                                                print("Cor do brinco:", animal[1])
+                                                print("Identificação:", animal[2])
+                                                print("-" * 20)
+
+                                brinco = input("Digite a cor do brinco: ").lower()
+                                identificacao = input("Digite a identificação: ")
+
+                                for i in range(len(animais)):
+
+                                    if animais[i][0] == tipo:
+
+                                        if animais[i][1] == brinco:
+
+                                            if animais[i][2] == identificacao:
+
+                                                if animais[i][3] == "disponível para venda":
+
+                                                    animais.pop(i)
+
+                                                encontrado = True
+
+                                                print("Compra realizada com sucesso!")
+
+                                                break
+
+                                if encontrado == False:
+                                    print("Animal não disponível.")
+                            
+                            elif compra == 2:
+
+                                encontrado = False
+
+                                print("\n=== PRODUTOS DISPONÍVEIS ===")
+
+                                for produto in derivados:
+
+                                    print("Produto:", produto[0])
+                                    print("Quantidade:", produto[1], "kg")
+                                    print("Valor: R$", produto[2])
+                                    print("-" * 20)
+
+                                    nome = input("Digite o nome do produto: ").lower()
+
+                                    quantidade = float(input("Quantidade desejada (kg): "))
+
+                                    for produto in derivados:
+
+                                        if produto[0] == nome:
+
+                                            encontrado = True
+
+                                            if quantidade <= produto[1]:
+
+                                                produto[1] = produto[1] - quantidade
+
+                                                valor_total = quantidade * produto[2]
+
+                                                print("Compra realizada com sucesso!")
+                                                print("Valor total: R$", valor_total)
+
+                                            else:
+                                                print("Quantidade indisponível.")
+
+                                        if encontrado == False:
+                                            print("Produto não encontrado.")
+
+                            elif compra == 0:
+                                break
+
+                            else:
+                                print("Comando inválido!")
+
+    
+                    elif op == 2:
+                        nome = input("Digite seu nome: ")
+                        while True:
+
+                            dia = int(input("Digite o dia: "))
+                            mes = int(input("Digite o mês: "))
+                            ano = int(input("Digite o ano: "))
+
+                            data_valida = True
+
+                            if mes in meses31:
+
+                                if dia < 1 or dia > 31:
+                                    data_valida = False
+
+                            elif mes in meses30:
+                                if dia < 1 or dia > 30:
+                                    data_valida = False
+
+                            elif mes == 2:
+
+                                bissexto = False
+
+                                if ano % 4 == 0:
+
+                                    if ano % 100 != 0 or ano % 400 == 0:
+                                        bissexto = True
+
+                                if bissexto == True:
+
+                                    if dia < 1 or dia > 29:
+                                        data_valida = False
+
+                                else:
+
+                                    if dia < 1 or dia > 28:
+                                        data_valida = False
+
+                            else:
+                                data_valida = False
+
+                            if data_valida == True:
+                                break
+
+                            else:
+                                print("Data inválida! Tente novamente.")
+
+                        while True:
+                            horario = input("Digite o horário (HH:MM): ")
+
+                            if len(horario) == 5:
+
+                                if horario[2] == ":":
+
+                                    hora = int(horario[0] + horario[1])
+                                    minuto = int(horario[3] + horario[4])
+
+                            if hora >= 0 and hora <= 23:
+
+                                if minuto >= 0 and minuto <= 59:
+                                    break
+
+                        print("Horário inválido! Tente novamente.")
+
+            transporte = [nome, dia, mes, ano, horario]
+
+            Agendado.append(transporte)
+
+            print("\nRetirada agendada com sucesso!")
+
                     if op == 0:
-                        break
-                    else:
-                        print("Comando Inválido, tente novamente.")
+                    break
+
+            else:
+                print("Comando inválido, tente novamente.")
         
         if encontrado == False:
             print("Login ou senha incorretos.")
@@ -408,22 +577,3 @@ while True:
 
 # cliente
 # admin
- # 1
-adicionarprodutos = input("Digite o nome do produto ! ")
-alterarprodutos = input("Digite o nome do produto que vc deseja alterar ! ")
-for posicao in range(len(animais)):
-    if produtos[posicao] == adicionarprodutos:
-        produtos[posicao] == alterarprodutos
-        print(produtos)
-
-produtos(len(produtos))
-print(produtos)
-
-# elif op == 4 :
-#     print ("-" *  50)
-#     nomedeanimal = input("Digite o nome do seu animal ! ")
-#     for a in animais:
-#         if a[0] == animais:
-#             print("a[0], " | "a[1], " |" a[2], ")
-animais.append([])
-    
