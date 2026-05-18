@@ -14,7 +14,7 @@ animais = [
 ]
 
 Produtos = [
-    ["Leite", 100, 4.00]
+    ["Leite", 100, 4.00],
     ["Milho", 500, 1.80],
     ["Feijão", 200, 6.50],
     ["Arroz", 350, 4.20],
@@ -270,23 +270,28 @@ while True:
                     
                     elif op == 2:
                         while True:
+
                             print("\n=== GERENCIAR PRODUÇÃO E DERIVADOS ===")
                             print("1 - Registrar leite ordenhado")
                             print("2 - Cadastrar produto")
-                            print("3 - Atualizar produto")
-                            print("4 - Remover produto")
+                            print("3 - Listar produtos")
+                            print("4 - Apagar produto")
                             print("0 - Sair")
+
                             op = int(input("Escolha uma opção: "))
+
+                            
                             if op == 1:
 
                                 litros = float(input("Digite a quantidade de litros ordenhados: "))
 
-                                Produtos.append(["Leite", litros, 4])
+                                Produtos.append(["Leite", litros, 4.00])
 
                                 print("Produção registrada com sucesso!")
 
-        
+                            
                             elif op == 2:
+
                                 nome_produto = input("Nome do produto: ").strip()
 
                                 peso = float(input("Peso do produto (kg): "))
@@ -299,23 +304,48 @@ while True:
 
                                 print("Produto adicionado ao estoque!")
 
-        
-                                derivados = False
+                           
                             elif op == 3:
-                                print("\n=== PRODUÇÃO DE LEITE ===")
-                                for leite in Produtos:
-                                    print(leite, "litros")
-                                    if (leite >=  8, "litros"):
-                                        print("Voce tem estoque de leite suficiente para pronduzir queijo !")
-                                        print("\n=== PRODUTOS FABRICADOS ===")
 
-                                for produto in derivados:
+                                print("\n=== LISTA DE PRODUTOS ===")
+
+                                for produto in Produtos:
 
                                     print("Produto:", produto[0])
-                                    print("Peso:", produto[1], "kg")
+                                    print("Quantidade:", produto[1], "kg")
                                     print("Valor: R$", produto[2])
 
+                                    if produto[0] == "Leite":
+
+                                        if produto[1] >= 8:
+                                            print("Você tem estoque de leite suficiente para produzir queijo!")
+
+                                    print("-" * 20)
+
+                            
                             elif op == 4:
+
+                                nome = input("Digite o nome do produto para apagar: ").lower()
+
+                                encontrado = False
+
+                                for i in range(len(Produtos)):
+
+                                    if Produtos[i][0].lower() == nome:
+
+                                        Produtos.pop(i)
+
+                                        encontrado = True
+
+                                        print("Produto apagado com sucesso!")
+
+                                        break
+
+                                if encontrado == False:
+                                    print("Produto não encontrado.")
+
+                            
+                            elif op == 0:
                                 break
 
                             else:
@@ -347,6 +377,7 @@ while True:
 
                             compra = int(input("Escolha: "))
 
+                            
                             if compra == 1:
 
                                 encontrado = False
@@ -356,12 +387,15 @@ while True:
                                 print("\n=== ANIMAIS DISPONÍVEIS ===")
 
                                 for animal in animais:
-                                        if animal[0] == tipo:
-                                            if animal[3] == "disponível para venda":
-                                                print("Tipo:", animal[0])
-                                                print("Cor do brinco:", animal[1])
-                                                print("Identificação:", animal[2])
-                                                print("-" * 20)
+
+                                    if animal[0] == tipo:
+
+                                        if animal[3] == "disponível para venda":
+
+                                            print("Tipo:", animal[0])
+                                            print("Cor do brinco:", animal[1])
+                                            print("Identificação:", animal[2])
+                                            print("-" * 20)
 
                                 brinco = input("Digite a cor do brinco: ").lower()
                                 identificacao = input("Digite a identificação: ")
@@ -378,14 +412,15 @@ while True:
 
                                                     animais.pop(i)
 
-                                                encontrado = True
+                                                    encontrado = True
 
-                                                print("Compra realizada com sucesso!")
+                                                    print("Animal comprado com sucesso!")
 
-                                                break
+                                                    break
 
                                 if encontrado == False:
-                                    print("Animal não disponível.")
+                                    print("Animal não encontrado ou indisponível.")
+
                             
                             elif compra == 2:
 
@@ -393,43 +428,46 @@ while True:
 
                                 print("\n=== PRODUTOS DISPONÍVEIS ===")
 
-                                for produto in derivados:
+                                for produto in Produtos:
 
                                     print("Produto:", produto[0])
                                     print("Quantidade:", produto[1], "kg")
-                                    print("Valor: R$", produto[2])
+                                    print("Valor por kg: R$", produto[2])
                                     print("-" * 20)
 
-                                    nome = input("Digite o nome do produto: ").lower()
+                                nome = input("Digite o nome do produto: ").lower()
 
-                                    quantidade = float(input("Quantidade desejada (kg): "))
+                                quantidade = float(input("Digite a quantidade desejada (kg): "))
 
-                                    for produto in derivados:
+                                for produto in Produtos:
 
-                                        if produto[0] == nome:
+                                    if produto[0].lower() == nome:
 
-                                            encontrado = True
+                                        encontrado = True
 
-                                            if quantidade <= produto[1]:
+                                        if quantidade <= produto[1]:
 
-                                                produto[1] = produto[1] - quantidade
+                                            produto[1] = produto[1] - quantidade
 
-                                                valor_total = quantidade * produto[2]
+                                            valor_total = quantidade * produto[2]
 
-                                                print("Compra realizada com sucesso!")
-                                                print("Valor total: R$", valor_total)
+                                            print("Produto comprado com sucesso!")
+                                            print("Valor total: R$", valor_total)
 
-                                            else:
-                                                print("Quantidade indisponível.")
+                                        else:
+                                            print("Quantidade indisponível.")
 
-                                        if encontrado == False:
-                                            print("Produto não encontrado.")
+                                if encontrado == False:
+                                    print("Produto não encontrado.")
 
+                            
                             elif compra == 0:
+                                print("Voltando...")
                                 break
 
                             else:
                                 print("Comando inválido!")
+                            
 
     
                     elif op == 2:
@@ -493,8 +531,10 @@ while True:
 
                                 if minuto >= 0 and minuto <= 59:
                                     break
-
-                        print("Horário inválido! Tente novamente.")
+                                else:
+                                    print("Horário inválido! Tente novamente.")
+                            else:
+                                    print("Horário inválido! Tente novamente.")
 
                         transportes = [nome, dia, mes, ano, horario]
 
