@@ -21,10 +21,10 @@ Produtos = [
     ["Soja", 800, 2.90],
     ["Café", 150, 15.00],
     ["Cana-de-açúcar", 1200, 0.75],
-    ["Algodão", 300, 5.40],
+    ["Algodão", 400, 5.40],
     ["Mandioca", 450, 2.10],
-    ["Tomate", 180, 3.80],
-    ["Batata", 250, 2.70]
+    ["Tomate", 280, 3.80],
+    ["Batata", 350, 2.70]
 ]
 
 while True:
@@ -293,11 +293,14 @@ while True:
                                 print("Produto adicionado ao estoque!")
 
         
+                                derivados = False
                             elif op == 3:
                                 print("\n=== PRODUÇÃO DE LEITE ===")
                                 for leite in Produtos:
                                     print(leite, "litros")
-                                    print("\n=== PRODUTOS FABRICADOS ===")
+                                    if (leite >=  8, "litros"):
+                                        print("Voce tem estoque de leite suficiente para pronduzir queijo !")
+                                        print("\n=== PRODUTOS FABRICADOS ===")
 
                                 for produto in derivados:
 
@@ -308,9 +311,11 @@ while True:
                             elif op == 4:
                                 break
 
-                             else:
+                            else:
                                 print("Opção inválida!")
-                    elif op == 0:
+        
+                                
+                    if op == 0:
                         break
                     else:
                         print("Comando Inválido, tente novamente.")
@@ -320,7 +325,7 @@ while True:
                 print(f"Bem-vindo Cliente {usuario[0]}!")
                 encontrado = True
                 while True:
-                    print("------ Bem vindo ao Terminal ------")
+                    print("* - 10 Bem vindo ao Terminal * - 10 ")
                     print("1 -  Efetuar compra" )
                     print("2 - Agendar Retirada/Transporte")
                     print("0 - Sair")
@@ -396,10 +401,10 @@ while True:
 
     elif op == 3:
         print("Saindo...")
-        print("volte sempre!")
+        print("Volte sempre!")
         break
     else:
-        print("Comando Inválido, tente novamente.")
+        print("Comando Inválido, tente novamente !")
 
 # cliente
 # admin
@@ -421,3 +426,4 @@ print(produtos)
 #         if a[0] == animais:
 #             print("a[0], " | "a[1], " |" a[2], ")
 animais.append([])
+    
